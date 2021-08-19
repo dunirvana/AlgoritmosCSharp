@@ -14,6 +14,10 @@ namespace Algoritmos
 
             new Ordenacao("MergeSort");
             NotificarTerminoOperacaoESolicitarDigitacao("ordenação MergeSort");
+
+            new Ordenacao("QuickSort");
+            NotificarTerminoOperacaoESolicitarDigitacao("ordenação QuickSort");
+            
         }
 
         static void NotificarTerminoOperacaoESolicitarDigitacao(string pOperacao)

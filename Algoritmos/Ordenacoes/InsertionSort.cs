@@ -10,7 +10,7 @@
             NomeRotinaOrdenacao = "InsertionSort";
         }
 
-        public override Produto[] RecuperarProdutos() => Produtos;
+        protected override Produto[] RecuperarProdutos() => Produtos;
 
         public override void Ordenar()
         {

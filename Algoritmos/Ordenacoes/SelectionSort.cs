@@ -10,7 +10,7 @@
             NomeRotinaOrdenacao = "SelectionSort";
         }
 
-        public override Produto[] RecuperarProdutos() => Produtos;
+        protected override Produto[] RecuperarProdutos() => Produtos;
 
         public override void Ordenar()
         {
@@ -23,14 +23,14 @@
         /// - Para cada item verifica, a partir dele, qual é o menor da coleção (nova busca na coleção) e ai troca o atual pelo menor;
         /// -- A ideia é sempre buscar o menor a "direita" do item atual, se o menor a direita for menor que o atual então troca os dois de posição;
         /// </summary>
-        /// <param name="produtos">Itens</param>
-        /// <param name="quantidadeDeElementos">Total de itens</param>
-        private void OrdenacaoSelectionSort(Produto[] produtos, int quantidadeDeElementos)
+        /// <param name="pProdutos">Itens</param>
+        /// <param name="pQuantidadeDeElementos">Total de itens</param>
+        private void OrdenacaoSelectionSort(Produto[] pProdutos, int pQuantidadeDeElementos)
         {            
-            for (int atual = 0; atual < quantidadeDeElementos - 1; atual++)
+            for (int atual = 0; atual < pQuantidadeDeElementos - 1; atual++)
             {
-                int menor = RecuperarIndiceDoMenorProduto(produtos, atual, quantidadeDeElementos - 1);
-                TrocarProdutosDePosicao(produtos, atual, menor);
+                int menor = RecuperarIndiceDoMenorProduto(pProdutos, atual, pQuantidadeDeElementos - 1);
+                TrocarProdutosDePosicao(pProdutos, atual, menor);
             }
         }
 

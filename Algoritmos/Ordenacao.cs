@@ -1,7 +1,6 @@
 ﻿using Algoritmos.Ordenacoes;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Algoritmos
 {
@@ -35,6 +34,7 @@ namespace Algoritmos
                 { "SelectionSort", new SelectionSort(produtos) },
                 { "InsertionSort", new InsertionSort(produtos) },
                 { "MergeSort", new MergeSort(produtos) },
+                { "QuickSort", new QuickSort(produtos) },                
             };
         }
 

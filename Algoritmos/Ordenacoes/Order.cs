@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Algoritmos.Ordenacoes
 {
     public abstract class Order
-    {
-        public string NomeRotinaOrdenacao { get; set; }
+    {        
+        protected string NomeRotinaOrdenacao { get; set; }
 
         public abstract void Ordenar();
 
-        public abstract Produto[] RecuperarProdutos();
+        protected abstract Produto[] RecuperarProdutos();
 
         public void ImprimirDadosAntesDaOrdenacao()
         {
@@ -23,7 +21,7 @@ namespace Algoritmos.Ordenacoes
         }
 
 
-        public void TrocarProdutosDePosicao(Produto[] pProdutos, int pPrimeiro, int pSegundo)
+        protected void TrocarProdutosDePosicao(Produto[] pProdutos, int pPrimeiro, int pSegundo)
         {
             Produto primeiroProduto = pProdutos[pPrimeiro];
             Produto segundoProduto = pProdutos[pSegundo];

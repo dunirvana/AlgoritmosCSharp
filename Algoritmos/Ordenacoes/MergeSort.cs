@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Algoritmos.Ordenacoes
+﻿namespace Algoritmos.Ordenacoes
 {
     public class MergeSort : Order
     {
@@ -14,7 +10,7 @@ namespace Algoritmos.Ordenacoes
             NomeRotinaOrdenacao = "MergeSort";
         }
 
-        public override Produto[] RecuperarProdutos() => Produtos;
+        protected override Produto[] RecuperarProdutos() => Produtos;
 
         public override void Ordenar()
         {
@@ -26,57 +22,51 @@ namespace Algoritmos.Ordenacoes
         /// - Método recursivo, após a primeira chamada fica em recursão sempre para a metade dos itens (enquanto a quantidade de itens maior que 1);
         /// - Como nosso intercala é bom com poucos itens a recursividade vai diminuir os itens a serem intercalados até que toda ordenação seja feita;
         /// </summary>
-        /// <param name="produtos">Itens</param>
-        /// <param name="inicio">Inicio da coleção</param>
-        /// <param name="termino">Fim da coleção</param>
-        private void OrdenacaoMergeSort(Produto[] produtos, int inicio, int termino)
+        /// <param name="pProdutos">Itens</param>
+        /// <param name="pInicio">Inicio da coleção</param>
+        /// <param name="pTermino">Fim da coleção</param>
+        private void OrdenacaoMergeSort(Produto[] pProdutos, int pInicio, int pTermino)
         {
-            Console.WriteLine(string.Format("OrdenacaoMergeSort - inicio:{0}, termino:{1}", inicio, termino));
-
-            int quantidade = termino - inicio;
+            int quantidade = pTermino - pInicio;
             if (quantidade > 1)
             {
-                int meio = (inicio + termino) / 2;
-                OrdenacaoMergeSort(produtos, inicio, meio);
-                OrdenacaoMergeSort(produtos, meio, termino);
-                Intercala(produtos, inicio, meio, termino);
+                int meio = (pInicio + pTermino) / 2;
+                OrdenacaoMergeSort(pProdutos, pInicio, meio);
+                OrdenacaoMergeSort(pProdutos, meio, pTermino);
+                Intercalar(pProdutos, pInicio, meio, pTermino);
             }
-            else
-                Console.WriteLine("saiu!");
         }
 
         /// <summary>
         /// Intercala elementos já ordenados, funciona bem com 1 elemento, 2 elementos fora de ordem ou 2 elementos na ordem,
         /// ou seja, é possível ordenar coleções inteiras com esse método, desde que em pequenas partes
         /// </summary>
-        /// <param name="produtos">Itens</param>
-        /// <param name="inicio">Inicio (primeiro grupo)</param>
-        /// <param name="meio">Meio (fom do primeiro grupo e inicio do segundo</param>
-        /// <param name="termino">Fim do segundo grupo</param>
-        private void Intercala(Produto[] produtos, int inicio, int meio, int termino)
+        /// <param name="pProdutos">Itens</param>
+        /// <param name="pInicio">Inicio (primeiro grupo)</param>
+        /// <param name="pMeio">Meio (fom do primeiro grupo e inicio do segundo</param>
+        /// <param name="pTermino">Fim do segundo grupo</param>
+        private void Intercalar(Produto[] pProdutos, int pInicio, int pMeio, int pTermino)
         {
-            Console.WriteLine(string.Format("---> Intercala - [inicio:{0}, meio:{1}, termino:{2}]", inicio, meio, termino));
-
-            var resultado = new Produto[termino - inicio];
+            var resultado = new Produto[pTermino - pInicio];
 
             int atual = 0; // Contador para o array resultado
-            int atual1 = inicio; // Contador para a primeira parte do array 
-            int atual2 = meio; // Contador para a segunda parte do array
+            int atual1 = pInicio; // Contador para a primeira parte do array 
+            int atual2 = pMeio; // Contador para a segunda parte do array
 
             // troca os itens de posição, menores a esquerda
-            while (atual1 < meio && atual2 < termino)
+            while (atual1 < pMeio && atual2 < pTermino)
             {
-                var nota1 = produtos[atual1];
-                var nota2 = produtos[atual2];
+                var produto1 = pProdutos[atual1];
+                var produto2 = pProdutos[atual2];
 
-                if (nota1.Valor < nota2.Valor)
+                if (produto1.Valor < produto2.Valor)
                 {
-                    resultado[atual] = nota1;
+                    resultado[atual] = produto1;
                     atual1++;
                 }
                 else
                 {
-                    resultado[atual] = nota2;
+                    resultado[atual] = produto2;
                     atual2++;
                 }
 
@@ -84,24 +74,24 @@ namespace Algoritmos.Ordenacoes
             }
 
             // caso sobrem itens no grupo 1 os coloca na coleção final
-            while (atual1 < meio)
+            while (atual1 < pMeio)
             {
-                resultado[atual] = produtos[atual1];
+                resultado[atual] = pProdutos[atual1];
                 atual1++;
                 atual++;
             }
 
             // caso sobrem itens no grupo 2 os coloca na coleção final
-            while (atual2 < termino)
+            while (atual2 < pTermino)
             {
-                resultado[atual] = produtos[atual2];
+                resultado[atual] = pProdutos[atual2];
                 atual2++;
                 atual++;
             }
 
             for (int contador = 0; contador < atual; contador++)
             {
-                produtos[inicio + contador] = resultado[contador];
+                pProdutos[pInicio + contador] = resultado[contador];
             }
         }
     }
