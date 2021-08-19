@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Algoritmos
 {
@@ -6,18 +7,58 @@ namespace Algoritmos
     {
         static void Main(string[] args)
         {
-            new Ordenacao("SelectionSort");
-            NotificarTerminoOperacaoESolicitarDigitacao("ordenação SelectionSort");
+            var opcoes = new Dictionary<string, Algoritmo>
+            {
+                { "#", new Ordenacao("\n### Ordenação ###\n") },
+                { "1", new Ordenacao("SelectionSort") },
+                { "2", new Ordenacao("InsertionSort") },
+                { "3", new Ordenacao("MergeSort") },
+                { "4", new Ordenacao("QuickSort") },
 
-            new Ordenacao("InsertionSort");
-            NotificarTerminoOperacaoESolicitarDigitacao("ordenação InsertionSort");
+                { "##", new Ordenacao("\n### Busca ###\n") },
+                { "5", new Busca("LinearSearch") },
 
-            new Ordenacao("MergeSort");
-            NotificarTerminoOperacaoESolicitarDigitacao("ordenação MergeSort");
+                { "####", new Ordenacao("\n-------------") },
+                { "0", new Ordenacao("Sair") }
+            };
 
-            new Ordenacao("QuickSort");
-            NotificarTerminoOperacaoESolicitarDigitacao("ordenação QuickSort");
-            
+            MontarMenu(opcoes);
+        }
+
+        static void MontarMenu(Dictionary<string, Algoritmo> pOpcoes)
+        {
+            Console.Clear();
+            foreach (var item in pOpcoes)
+            {
+                var inicio = "[{0}]-";
+
+                Console.WriteLine(string.Format("{0}{1}", (item.Key.Contains("#") ? "" : (string.Format(inicio, item.Key))), item.Value.ToString()));
+            }
+
+            Console.WriteLine("Escolha uma das opções:");
+            Console.WriteLine("-------------\n");
+            var digitado = Console.ReadLine();
+            if (digitado == "0")
+                return;
+
+            if (!pOpcoes.ContainsKey(digitado))
+            {
+                Console.WriteLine(string.Format("Opção inválida: '{0}'. Pressione uma tecla para continuar!", digitado));
+                Console.ReadKey();
+            }
+            else
+                ExecutarOperacao(pOpcoes[digitado]);
+
+
+            MontarMenu(pOpcoes);
+        }
+
+        static void ExecutarOperacao(Algoritmo pAlgoritmo)
+        {
+            Console.Clear();
+
+            pAlgoritmo.Executar();
+            NotificarTerminoOperacaoESolicitarDigitacao(pAlgoritmo.ToString());
         }
 
         static void NotificarTerminoOperacaoESolicitarDigitacao(string pOperacao)
