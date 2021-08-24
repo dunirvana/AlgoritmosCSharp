@@ -18,16 +18,16 @@
         }
 
         /// <summary>
-        /// BuscaLinearSearch:
+        /// LinearSearch:
         /// - Percorre todos os elementos da lista, se o item não existir toda lista é percorrida;
         /// -- Ao encontrar retorna o indice;
         /// -- Se não encontrar retorna -1;
         /// </summary>
-        /// <param name="pProdutos"></param>
-        /// <param name="pDe"></param>
-        /// <param name="pAte"></param>
-        /// <param name="pBuscando"></param>
-        /// <returns></returns>
+        /// <param name="pProdutos">Coleção</param>
+        /// <param name="pDe">Inicio da buscao</param>
+        /// <param name="pAte">Término da basca</param>
+        /// <param name="pBuscando">Valor buscado</param>
+        /// <returns>Posição do valor sendo buscado ou "-1" caso o mesmo não seja encontrado</returns>
         private int BuscaLinearSearch(Produto[] pProdutos, int pDe, int pAte, double pBuscando)
         {
             for (int atual = pDe; atual < pAte; atual++)

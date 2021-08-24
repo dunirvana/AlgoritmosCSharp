@@ -15,8 +15,9 @@ namespace Algoritmos
                 { "3", new Ordenacao("MergeSort") },
                 { "4", new Ordenacao("QuickSort") },
 
-                { "##", new Ordenacao("\n### Busca ###\n") },
+                { "##", new Busca("\n### Busca ###\n") },
                 { "5", new Busca("LinearSearch") },
+                { "6", new Busca("BinarySearch") },
 
                 { "####", new Ordenacao("\n-------------") },
                 { "0", new Ordenacao("Sair") }

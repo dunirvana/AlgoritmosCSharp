@@ -32,9 +32,14 @@ namespace Algoritmos.Buscas
 
         public void ImprimirDadosAposBusca()
         {
-            var produtoEncontrado = RecuperarProdutos()[IndiceDoProdutoProcurado];
-            if (produtoEncontrado == null)
+            var produtoNaoEncontrado = (IndiceDoProdutoProcurado < 0 || RecuperarProdutos()[IndiceDoProdutoProcurado] == null);
+            if (produtoNaoEncontrado)
+            {
                 Console.WriteLine("Produto não encontrado!");
+                return;
+            }
+
+            var produtoEncontrado = RecuperarProdutos()[IndiceDoProdutoProcurado];
 
             Util.ImprimirProdutos(string.Format("{0}: Dados Apos Busca", NomeRotinaBusca), new Produto[]{ produtoEncontrado });
         }

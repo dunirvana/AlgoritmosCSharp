@@ -29,7 +29,8 @@ namespace Algoritmos
 
             return new Dictionary<string, Search>
             {
-                { "LinearSearch", new LinearSearch(produtos) }
+                { "LinearSearch", new LinearSearch(produtos) },
+                { "BinarySearch", new BinarySearch(produtos) }
             };
         }
 
